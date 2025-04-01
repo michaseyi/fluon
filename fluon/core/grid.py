@@ -1,7 +1,7 @@
 from typing import List, Literal
 import torch
 from fluon.math.interpolation import bilinear, nearest
-import torch.nn.functional as F
+# import torch.nn.functional as F
 
 
 class Grid:
@@ -35,7 +35,7 @@ class Grid:
 
         if len(point) != self.space_dim:
             raise ValueError(
-                f"Mismatch in dimensions: point({len(point)}), self.space_dim({self.space_dim})."
+                f"Mismatch in dimensions: point({len(point)}), self.space_dim({self.space_dim}). "
                 "All must have the same number of dimensions")
 
         # Todo: Use a transformation matrix to compute index and cache the matrix
@@ -54,10 +54,10 @@ class Grid:
 
 
 grid = Grid(center=[0, 0], extent=[2, 2],
-            resolution=[100, 100], quantity_dim=1, interpolation_mode='nearest')
+            resolution=[100, 100], quantity_dim=1, interpolation_mode='bilinear')
 
 
-# print(grid.sample([0, 0, 0]))
+print(grid.sample([0, 0]))
 
 
 # grid = torch.ones((1, 2, 100, 100))
